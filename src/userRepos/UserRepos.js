@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getRepos, getUserData } from "../api/github-api";
+import { getRepos } from "../api/github-api";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const UserRepos = ({ user }) => {
   const [isLoading, setisLoading] = useState(false);
@@ -12,21 +13,22 @@ const UserRepos = ({ user }) => {
 
   const fetchRepos = async user => {
     setisLoading(true);
-
     await getRepos(user)
       .then(response => {
         console.log("response data", response);
         setReposData(response);
       })
-      .catch(error => seterror(error))
+      .catch(error => {
+        seterror(error);
+        console.error(error);
+      })
       .finally(() => setisLoading(false));
     console.log();
   };
 
   return (
     <div>
-      {isLoading && <h2 style={{ color: "blue" }}>loading ....</h2>}
-
+      {isLoading && <CircularProgress />}
       {error && <h2 style={{ color: "red" }}>uups tenemos un error</h2>}
       <ul>
         {!error &&
