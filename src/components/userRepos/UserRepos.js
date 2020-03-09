@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getRepos } from "../api/github-api";
+import { getRepos } from "../../api/github-api";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const UserRepos = ({ user }) => {

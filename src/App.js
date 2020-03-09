@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import TextField from "@material-ui/core/TextField";
-import UserRepos from "./userRepos/UserRepos";
+import UserRepos from "./components/userRepos/UserRepos";
+import UserData from "./components/userData/UserData";
 
 //Up to you, probably it should include an input to enter the username,
 // one area to display the repositories of the user
@@ -11,6 +12,7 @@ import UserRepos from "./userRepos/UserRepos";
 const App = () => {
   const [user, setUser] = useState(false);
   let value = false;
+
   const handleSubmit = event => {
     event.preventDefault();
     setUser(value);
@@ -31,7 +33,8 @@ const App = () => {
           onChange={handleChange}
         />
       </form>
-      {user && <UserRepos user={user} />}
+      {/* {user && <UserRepos user={user} />} */}
+      {user && <UserData user={user} />}
     </div>
   );
 };
